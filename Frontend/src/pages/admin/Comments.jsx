@@ -7,10 +7,16 @@ const Comments = () => {
     const [comments, setComments] = React.useState([]);
     const[filter , setFilter]=React.useState('Not approved');
 
- const {axios} = useAppContext()
+ const {axios,token} = useAppContext()
    const fetchComments = async () => {
        try {
-              const res = await axios.get("/api/user/comments");
+              const res = await axios.get("/api/user/comments"
+                , {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+              );
      setComments(res.data.comments);
 
 

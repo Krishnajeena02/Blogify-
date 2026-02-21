@@ -57,7 +57,8 @@ export const getBlogById = async (req,res)=>{
 
   try{
     const {blogId}= req.params;
-    const blog = await Blog.findById(blogId);
+const blog = await Blog.findById(blogId)
+  .populate("author", "name email");
     if(!blog){
       return res.status(404).json({message:"blog not found"})
     }
@@ -159,7 +160,7 @@ export const getBlogComments = async (req, res) => {
 export const generateContent = async(req,res)=>{
            try{
             const {prompt} = req.body;
-            const response = await main(prompt + 'generate a blog for this topic in detail')
+            const response = await main(prompt + 'generate a beautifull  blog with emojies  for this topic in detail')
             res.status(200).json({response})
 
             

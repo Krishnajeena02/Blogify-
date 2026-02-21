@@ -90,11 +90,13 @@ const Blog = () => {
   }
 
   return (
-    <div className="relative">
+    <motion.div initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}  className="relative">
       <img
         src={assets.gradientBackground}
         alt=""
-        className="absolute inset-0 -z-10 opacity-50"
+        className="absolute inset-0 -z-10 opacity-50 "
       />
 
       <Navbar />
@@ -112,7 +114,7 @@ const Blog = () => {
         <h2 className="my-5 max-w-lg mx-auto truncate">{blog.subTitle}</h2>
 
         <p className="inline-block py-1 px-4 rounded-full mb-6 border text-sm border-indigo-600/35 bg-black/5 font-medium text-indigo-600">
-          Krishna Jeena
+         {blog.author?.name}
         </p>
       </div>
 
@@ -121,7 +123,7 @@ const Blog = () => {
         <img
           src={blog.image}
           alt=""
-          className="w-full rounded-3xl mb-8 object-cover"
+          className="w-full h-[30rem] rounded-3xl mb-8 object-cover"
         />
 
         <div
@@ -197,7 +199,7 @@ const Blog = () => {
       </div>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

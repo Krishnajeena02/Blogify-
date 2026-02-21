@@ -28,12 +28,12 @@ const Header = () => {
       <div className="text-center mt-20 mb-8">
         
         <div className="inline-flex items-center justify-center gap-4 rounded-full px-6 py-1.5 mb-4
-                        border border-black-600/50 bg-black text-white text-sm">
-          <p>New: AI integrated feature</p>
-          <img src={assets.star_icon} alt="star" />
+                        border-1 border-dashed border-black/20 bg-black/5   text-md">
+          <p className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">New: AI integrated feature</p>
+          <img src={assets.star_icon} alt="star"  />
         </div>
 
-        <h1 className="text-3xl shadow-xl shadow-indigo-600/15 sm:text-6xl font-semibold sm:leading-[4rem] text-gray-300">
+        <h1 className="text-3xl shadow-xl shadow-indigo-600/15 sm:text-6xl font-semibold sm:leading-[4rem] bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">
           Your Own <span className="text-black">Blogging</span>
           <br />
           Platform
@@ -45,7 +45,7 @@ const Header = () => {
 
         {/* Search Form */}
         <form onSubmit={onSubmitHandler} className="flex justify-between max-w-lg mx-auto
-                         border border-gray-300 bg-white rounded-md">
+                         border border-dashed border-black/20 bg-white rounded-md">
           <input ref={inputRef}
             type="text"
             placeholder="Search for blogs..."

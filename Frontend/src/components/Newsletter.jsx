@@ -9,11 +9,16 @@ const Newsletter = () => {
         <p className='md:text-lg text-gray-500/70  pb-8'>
             Subscribe to our newsletter to get the latest updates.
         </p>
-
-<form action="" className='flex items-center justify-between max-w-2xl w-full md:h-13 h-12'>
-        <input type="email" placeholder="Enter your email" className='border border-gray-300 rounded-md h-full  border-r-0 outline-none w-full rounded-rnone px-3 text-gray-500'/>
-        <button className='md:px-12 px-8 h-full text-white bg-black hover:bg-black/80 transition-all cursor-pointer rounded-md rounded-1-none'>Subscribe</button>
-   </form>
+<form className="flex flex-col sm:flex-row items-center justify-center w-full max-w-2xl gap-2">
+  <input
+    type="email"
+    placeholder="Enter your email"
+    className="flex-1 border border-gray-300 rounded-md px-3 py-2 outline-none text-gray-500"
+  />
+  <button className="px-6  sm:px-12 py-2 text-white bg-black hover:bg-black/80 transition-all rounded-md">
+    Subscribe
+  </button>
+</form>
     </div>
   )
 }

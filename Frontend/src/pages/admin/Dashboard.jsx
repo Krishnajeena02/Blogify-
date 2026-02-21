@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     const res = await axios.post(
       "/api/user/dashboard",
-      {},
+      
       {
         headers: {
           Authorization: `Bearer ${token}`,

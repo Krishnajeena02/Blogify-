@@ -9,7 +9,7 @@ router.post("/login", Login);
 router.get("/comments", getAllComments);
 router.get("/blogs",auth, getAllBlogsAdmin);
 router.post("/deleteComment", deleteCommentById);
-router.post("/approvecomment", approveCommentById);
+router.post("/approvecomment",auth, approveCommentById);
 router.post("/dashboard",auth, getDashboard);
 
 export default router;

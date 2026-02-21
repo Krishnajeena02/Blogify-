@@ -98,7 +98,9 @@ res.status(200).json({blogs});
 
 export const getAllComments = async (req,res)=>{
   try{  
-    const comments = await Comment.find({}).populate("blogId").sort({createdAt:-1});
+    const userId = req.user.id;
+
+    const comments = await Comment.find({author:userId}).populate("blogId").sort({createdAt:-1});
     res.status(200).json({comments});
   }       
   catch(error){
