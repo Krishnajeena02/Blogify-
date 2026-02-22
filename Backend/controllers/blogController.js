@@ -4,7 +4,6 @@ import User from "../model/userSchema.js"
 import main from "../config/gemini.js";
 export const createBlog = async (req, res) => {
   try {
-    console.log("Logged user id:", req.user.id);
     const { title, subTitle, description, category, isPublished } = req.body;
 
    if(!title || !description || !category){
