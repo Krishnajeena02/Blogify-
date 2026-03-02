@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
-import BlogCard from "./BlogCard.jsx";
+import BlogCard from "./Blogcard.jsx";
 import { blogCategories } from "../assets/assets";
 import { useAppContext } from "../context/appContext";
 
@@ -22,7 +22,7 @@ const BlogList = () => {
     <div className="max-w-6xl mx-auto px-6 py-12">
       {/* Heading */}
       <h2 className="text-3xl font-bold text-black mb-8 text-center">
-        Latest Blog
+        Latest Blogs
       </h2>
 
       {/* Categories */}
