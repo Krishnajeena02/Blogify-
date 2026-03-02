@@ -7,7 +7,11 @@ import userRoute from "./routes/userRoute.js";
 import blogRoute from "./routes/blogRoute.js";
  
 const app = express();
-app.use(cors())
+
+app.use(cors({
+  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // parses form data
    
