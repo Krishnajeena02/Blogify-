@@ -22,7 +22,7 @@ const BlogList = () => {
     <div className="max-w-6xl mx-auto px-6 py-12">
       {/* Heading */}
       <h2 className="text-3xl font-bold text-black mb-8 text-center">
-        Latest Blogs
+        Latest Blog
       </h2>
 
       {/* Categories */}
