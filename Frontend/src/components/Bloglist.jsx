@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
-import BlogCard from "./BlogCard";
+import BlogCard from "/BlogCard.jsx";
 import { blogCategories } from "../assets/assets";
 import { useAppContext } from "../context/appContext";
 
