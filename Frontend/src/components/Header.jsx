@@ -40,7 +40,7 @@ const Header = () => {
         </h1>
 
         <p className="my-6 sm:my-8 max-w-2xl mx-auto max-sm:text-xs text-gray-500">
-          Create And Share  with a community of passionate writers and readers.
+         Beautiful writing deserves a beautiful Platform.Express yourself like never before
         </p>
 
         <form onSubmit={onSubmitHandler} className="flex justify-between max-w-lg mx-auto
