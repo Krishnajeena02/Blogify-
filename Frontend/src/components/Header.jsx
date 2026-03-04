@@ -29,14 +29,14 @@ const Header = () => {
         
         <div className="inline-flex items-center justify-center gap-4 rounded-full px-6 py-1.5 mb-4
                         border border-dashed border-black/20 bg-black/5   text-md">
-          <p className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">New: AI integrated feature</p>
+          <p className="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">Meet Your AI Writing Partner</p>
           <img src={assets.star_icon} alt="star"  />
         </div>
 
-        <h1 className="text-3xl shadow-xl shadow-indigo-600/15 sm:text-6xl font-semibold sm:leading-[4rem] bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">
-          Your Own <span className="text-black">Blogging</span>
+        <h1 className="text-3xl pb-4 shadow-xl shadow-indigo-600/15 sm:text-6xl font-semibold sm:leading-[4rem] bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-blue-600 to-purple-500 ">
+       Turn Thoughts <span className="text-black">Into</span>
           <br />
-          Platform
+      Blogs
         </h1>
 
         <p className="my-6 sm:my-8 max-w-2xl mx-auto max-sm:text-xs text-gray-500">
