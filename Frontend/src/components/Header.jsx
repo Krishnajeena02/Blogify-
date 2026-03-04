@@ -39,7 +39,7 @@ const Header = () => {
       Blogs
         </h1>
 
-        <p className="my-6 sm:my-8 max-w-2xl mx-auto max-sm:text-xs text-gray-500">
+        <p className="my-6 text-black sm:my-8 max-w-2xl mx-auto max-sm:text-xs ">
          Beautiful writing deserves a beautiful Platform.Express yourself like never before
         </p>
 
