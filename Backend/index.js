@@ -8,7 +8,13 @@ import blogRoute from "./routes/blogRoute.js";
  
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'https://blogify-ruby-iota.vercel.app',   // ← replace with your real Vercel URL
+    'http://localhost:5173',          // local dev
+  ],
+  credentials: true,
+}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
    
