@@ -102,16 +102,15 @@ export const togglePublishBlog = async (req,res)=>{
     res.status(500).json({message:error.message});
   }
 }
-
 export const addComment = async (req, res) => {
   try {
-    const { blogId, comment, author } = req.body;
+    const { blogId, comment } = req.body;
 
-    if (!blogId || !comment || !author) {
-      return res.status(400).json({ message: "All fields are required" });
+    if (!blogId || !comment) {
+      return res
+        .status(400)
+        .json({ message: "BlogId and comment are required" });
     }
-
-  
 
     const blog = await Blog.findById(blogId);
     if (!blog) {
@@ -121,12 +120,9 @@ export const addComment = async (req, res) => {
     const newComment = await Comment.create({
       blogId,
       comment,
-      author,
+      author: req.user.id,
       isApproved: false,
     });
-
-    // blog.comments.push(newComment._id);
-    await blog.save();
 
     res.status(201).json({
       message: "Comment added successfully for approval",
@@ -134,7 +130,7 @@ export const addComment = async (req, res) => {
     });
   } catch (error) {
     console.error("ADD COMMENT ERROR:", error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -147,7 +143,7 @@ export const getBlogComments = async (req, res) => {
     const comments = await Comment.find({
       blogId,
       isApproved: true,
-    }).sort({ createdAt: -1 });
+    }).populate("author","name").sort({ createdAt: -1 });
 
     res.status(200).json({ comments });
   } catch (error) {

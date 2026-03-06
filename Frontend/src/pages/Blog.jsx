@@ -11,13 +11,13 @@ import { assets } from "../assets/assets";
 
 const Blog = () => {
   const { id } = useParams();
-  const { axios } = useAppContext();
+  const { axios ,token} = useAppContext();
 
   const [blog, setBlog] = useState(null);
   const [comments, setComments] = useState([]);
-  const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
+
 
   const fetchBlog = async () => {
     try {
@@ -36,29 +36,37 @@ const Blog = () => {
 
   const fetchComments = async () => {
     try {
-           const res = await axios.get(`/api/blog/comments/${id}`);
+      const res = await axios.get(`/api/blog/comments/${id}`);
       setComments(res.data.comments || []);
-      fetchComments()
     } catch (error) {
       toast.error(error.message);
     }
   };
 
-  const addComment = async (e) => {
+ const addComment = async (e) => {
   e.preventDefault();
 
   try {
-    const res = await axios.post("/api/blog/addComment", {
-      blogId: id,
-      author: name,
-      comment: content,
-    });
+    const res = await axios.post(
+      "/api/blog/addComment",
+      {
+        blogId: id,
+        comment: content,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     toast.success(res.data.message);
 
-    setComments((prev) => [res.data.comment, ...prev]);
-    setName("");
     setContent("");
+
+    // IMPORTANT: reload comments to get populated author name
+    fetchComments();
+
   } catch (error) {
     toast.error(error.response?.data?.message || "Something went wrong");
   }
@@ -90,13 +98,16 @@ const Blog = () => {
   }
 
   return (
-    <motion.div initial={{ opacity: 0 }}
+    <motion.div
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}  className="relative">
+      exit={{ opacity: 0 }}
+      className="relative"
+    >
       <img
         src={assets.gradientBackground}
         alt=""
-        className="absolute inset-0 -z-10 opacity-50 "
+        className="absolute inset-0 -z-10 opacity-50"
       />
 
       <Navbar />
@@ -114,7 +125,7 @@ const Blog = () => {
         <h2 className="my-5 max-w-lg mx-auto truncate">{blog.subTitle}</h2>
 
         <p className="inline-block py-1 px-4 rounded-full mb-6 border text-sm border-indigo-600/35 bg-black/5 font-medium text-indigo-600">
-         {blog.author?.name}
+          {blog.author?.name}
         </p>
       </div>
 
@@ -135,9 +146,7 @@ const Blog = () => {
         <div className="mt-14">
           <p className="font-medium">Comments ({comments.length})</p>
 
-
           <div className="flex flex-col gap-4 mt-4">
-            
             {comments.map((item, index) => (
               <div
                 key={index}
@@ -145,7 +154,7 @@ const Blog = () => {
               >
                 <div className="flex items-center gap-2 mb-1">
                   <img src={assets.user_icon} alt="" className="w-6" />
-                  <p className="font-medium">{item.author}</p>
+                  <p className="font-medium">{item.author?.name}</p>
                 </div>
 
                 <p className="text-sm ml-8">{item.comment}</p>
@@ -162,27 +171,23 @@ const Blog = () => {
         <div className="mt-12">
           <p className="font-semibold mb-4">Add your comment</p>
 
-          <form onSubmit={addComment} className="flex flex-col gap-4">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Name"
-              className="p-2 border border-gray-300 rounded-lg outline-none"
-              required
-            />
+          {token ? (
+            <form onSubmit={addComment} className="flex flex-col gap-4">
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Comment"
+                className="p-2 border border-gray-300 rounded-lg outline-none h-32"
+                required
+              />
 
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Comment"
-              className="p-2 border border-gray-300 rounded-lg outline-none h-32"
-              required
-            />
-
-            <button className="bg-black text-white px-8 py-2 rounded hover:scale-105 transition w-fit">
-              Submit
-            </button>
-          </form>
+              <button className="bg-black text-white px-8 py-2 rounded hover:scale-105 transition w-fit">
+                Submit
+              </button>
+            </form>
+          ) : (
+            <p className="text-gray-500">Login to add a comment</p>
+          )}
         </div>
 
         {/* SHARE */}
